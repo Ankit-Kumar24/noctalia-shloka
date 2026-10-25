@@ -29,7 +29,12 @@ Noctalia v5 with plugin API 12 or newer.
 2. Enable the plugin:
 
    ```
+   noctalia msg plugins source add local path ~/.config/noctalia/plugins
+
+   noctalia msg plugins list | grep shloka
+
    noctalia msg plugins enable ankitkumar/shloka
+
    ```
 
    Or toggle **Shloka** on in **Settings → Plugins**.
