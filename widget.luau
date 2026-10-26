@@ -1,5 +1,5 @@
 -- SPDX-License-Identifier: GPL-3.0-or-later
---!strict
+--!nonstrict
 
 math.randomseed(noctalia.nowMs())
 
@@ -35,15 +35,10 @@ local eligible: { number } = {}
 local pos: number = 1
 local lastChangeMs: number = noctalia.nowMs()
 local lastDayNumber: number = -1
-
-local SIZES: { [string]: { number } } = {
-    wide = { 620, 340 },
-    square = { 440, 440 },
-    tall = { 380, 560 },
-}
+local W, H = 620, 340
 
 local SPEAKERS: { [string]: string } = {
-    ["श्रीभगवान्"] = "Shri Bhagavan",
+    ["श्रीभगवान्"] = "Shri Krishna",
     ["अर्जुन"] = "Arjuna",
     ["सञ्जय"] = "Sanjaya",
     ["धृतराष्ट्र"] = "Dhritarashtra",
@@ -149,23 +144,21 @@ local function creditLabel(by: string, range: string?, size: number, maxW: numbe
     })
 end
 
-local function messageState(W: number, H: number, textKey: string, color: string)
+local function messageState(textKey: string, color: string)
     desktopWidget.render(ui.column({ width = W, height = H, padding = 4, gap = 8, align = "stretch" }, {
         ui.label({ text = noctalia.tr(textKey), color = color, textAlign = "center" }),
     }))
 end
 
 local function render()
-    local size = SIZES[noctalia.getConfig("layout") :: string] or SIZES.wide
-    local W, H = size[1], size[2]
     local maxW = W - 24
 
     if not dataOk then
-        messageState(W, H, "load_error", "error")
+        messageState("load_error", "error")
         return
     end
     if #eligible == 0 then
-        messageState(W, H, "no_verses", "on_surface_variant")
+        messageState("no_verses", "on_surface_variant")
         return
     end
 
@@ -263,7 +256,7 @@ local function render()
 
         if showReference then
             table.insert(headerChildren, ui.label({
-                text = string.format("BG %d.%d · %s", v.chapter, v.verse, formatSpeaker(v.speaker, lang)),
+                text = string.format("%d.%d · %s", v.chapter, v.verse, formatSpeaker(v.speaker, lang)),
                 fontSize = tinySize,
                 color = "primary",
             }))
@@ -287,7 +280,7 @@ local function render()
                     variant = "ghost",
                     controlSize = "sm",
                     onClick = function()
-                        noctalia.copyToClipboard(copyText, "text/plain")
+                    noctalia.copyToClipboard(copyText, "text/plain;charset=utf-8")
                         noctalia.notify(noctalia.tr("copied"))
                     end,
                 }),
