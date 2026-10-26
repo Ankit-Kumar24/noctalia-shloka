@@ -1,9 +1,4 @@
 {
-  "settings.layout.label": "Widget layout",
-  "settings.layout.description": "Choose widget dimensions: wide (620×340), square (440×440), or tall (380×560).",
-  "settings.layout.wide": "Wide",
-  "settings.layout.square": "Square",
-  "settings.layout.tall": "Tall",
   "settings.mode.label": "Verse selection",
   "settings.mode.description": "Choose a random verse or keep one verse per local day.",
   "settings.mode.random": "Random",

@@ -13,18 +13,6 @@ id = "verse"
 entry = "widget.luau"
 
 [[desktop_widget.setting]]
-key = "layout"
-type = "select"
-label_key = "settings.layout.label"
-description_key = "settings.layout.description"
-default = "wide"
-options = [
-    { value = "wide", label_key = "settings.layout.wide" },
-    { value = "square", label_key = "settings.layout.square" },
-    { value = "tall", label_key = "settings.layout.tall" },
-]
-
-[[desktop_widget.setting]]
 key = "mode"
 type = "select"
 label_key = "settings.mode.label"
