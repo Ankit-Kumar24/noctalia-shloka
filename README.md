@@ -1,44 +1,43 @@
 # Shloka
 
-> कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।
-> _karmaṇy evādhikāras te mā phaleṣu kadācana_
->
-> You have a right to your work, never to its fruits. — Bhagavad Gita 2.47
+A desktop widget that shows Bhagavad Gita verses in Sanskrit with
+transliteration and English or Hindi translations, either at random intervals
+or one verse per day.
 
-A Bhagavad Gita verse widget for [Noctalia](https://noctalia.dev). Shows a verse in Sanskrit with transliteration and an English or Hindi translation, on your desktop or lock screen.
+## Plugin
 
-## Features
+| Field   | Value                   |
+| ------- | ----------------------- |
+| ID      | `ankitkumar/shloka`     |
+| Entries | Desktop widget: `verse` |
 
-- Sanskrit verse in Devanagari, Roman transliteration, and English/Hindi translation
-- Random verse on a timer, or one verse per day
-- Previous, next, and copy-to-clipboard buttons
-- Three layouts: wide, square, tall
+## Usage
 
-## Requirements
+Enable **Shloka** in **Settings → Plugins**, then open **Settings → Desktop →
+Toggle Editor**, choose **Shloka** in the toolbar, and click **+**.
 
-Noctalia v5 with plugin API 12 or newer.
+The header shows the verse reference and speaker, with **Previous**, **Copy**,
+and **Next** buttons. **Copy** copies the visible verse text along with its
+reference.
 
-## Installation
+## Settings
 
-1. Clone this repository into Noctalia's local plugin folder:
+| Setting                | Type     | Default  | Description                                                                                          |
+| ---------------------- | -------- | -------- | ---------------------------------------------------------------------------------------------------- |
+| `mode`                 | `select` | `random` | `random` rotates verses on a timer; `daily` shows one verse per local day.                           |
+| `refresh_minutes`      | `int`    | `30`     | Minutes between random verses (0–1440). `0` disables rotation. Only used in `random` mode.           |
+| `language`             | `select` | `en`     | Translation shown: `en`, `hi`, `both`, or `none`. Verses without the chosen translation are skipped. |
+| `show_sanskrit`        | `bool`   | `true`   | Show the Sanskrit verse.                                                                             |
+| `show_transliteration` | `bool`   | `true`   | Show the Roman transliteration.                                                                      |
+| `show_reference`       | `bool`   | `true`   | Show chapter, verse, and speaker.                                                                    |
+| `show_credit`          | `bool`   | `true`   | Show the translator and grouped verse range.                                                         |
+| `show_controls`        | `bool`   | `true`   | Show the Previous, Copy, and Next buttons.                                                           |
+| `teachings_only`       | `bool`   | `true`   | Only show verses spoken by Shri Krishna.                                                             |
+| `font_size`            | `int`    | `22`     | Base text size (12–48). Transliteration, translation, and credits scale with it.                     |
 
-   ```
-   git clone https://github.com/Ankit-Kumar24/noctalia-shloka ~/.local/share/noctalia/plugins/shloka
-   ```
+## Notes
 
-2. Enable the plugin:
-
-   ```
-   noctalia msg plugins enable ankitkumar/shloka
-   ```
-
-   Or toggle **Shloka** on in **Settings → Plugins**.
-
-## Credits
-
-- Verse text and translations are derived from [vedicscriptures/bhagavad-gita-data](https://github.com/vedicscriptures/bhagavad-gita-data), licensed under LGPL-3.0. Translators are credited on each verse in the widget.
-- Sanskrit font: [Tiro Devanagari Sanskrit](https://fonts.google.com/specimen/Tiro+Devanagari+Sanskrit), licensed under the SIL Open Font License (see `fonts/OFL.txt`).
-
-## License
-
-GPL-3.0-or-later. See [LICENSE](LICENSE).
+- No network access. Verses and the Devanagari font are bundled.
+- Log lines are prefixed with `shloka:`.
+- Verse data is from [vedicscriptures/bhagavad-gita](https://github.com/vedicscriptures/bhagavad-gita). English translation by Swami Sivananda (The Divine Life Society); Hindi translation by Swami Ramsukhdas (Gita Press, Gorakhpur).
+- The Devanagari font is Tiro Devanagari Sanskrit, licensed under the SIL Open Font License 1.1 (`fonts/OFL.txt`).
